@@ -4,6 +4,8 @@
 
 package simplecurriculun;
 
+import java.util.Scanner;
+
 /**
  *
  * @author Ronny Trinidad
@@ -11,6 +13,11 @@ package simplecurriculun;
 public class SimpleCurriculun {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        System.out.println("prueba xd");
+        
+        Scanner sca = new Scanner(System.in);
+        
+        String s1 = sca.nextLine();
+        System.out.println("lo que escaneaste fue: " + s1);
     }
 }
