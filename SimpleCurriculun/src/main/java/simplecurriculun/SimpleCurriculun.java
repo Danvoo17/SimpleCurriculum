@@ -4,7 +4,7 @@
 
 package simplecurriculun;
 
-import views.MainTitle;
+import views.MainView;
 
 /**
  *
@@ -13,7 +13,7 @@ import views.MainTitle;
 public class SimpleCurriculun {
 
     public static void main(String[] args) {
-        MainTitle open = new MainTitle();
+        MainView open = new MainView();
         open.setVisible(true);
     }
 }

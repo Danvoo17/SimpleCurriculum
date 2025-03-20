@@ -15,7 +15,6 @@ public class Create extends javax.swing.JFrame {
      */
     public Create() {
         initComponents();
-        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -57,7 +56,7 @@ public class Create extends javax.swing.JFrame {
 
     private void btn_backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_backActionPerformed
 
-        MainTitle open = new MainTitle();
+        MainView open = new MainView();
         open.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_backActionPerformed

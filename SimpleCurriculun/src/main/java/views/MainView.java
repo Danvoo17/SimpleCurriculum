@@ -6,16 +6,15 @@ package views;
 
 /**
  *
- * @author Joel Castaños
+ * @author Ronny Trinidad
  */
-public class maintitle extends javax.swing.JFrame {
+public class MainView extends javax.swing.JFrame {
 
     /**
-     * Creates new form maintitle
+     * Creates new form MainView
      */
-    public maintitle() {
+    public MainView() {
         initComponents();
-        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -28,18 +27,15 @@ public class maintitle extends javax.swing.JFrame {
     private void initComponents() {
 
         title = new javax.swing.JLabel();
+        background = new javax.swing.JLabel();
         aside = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
-        btn_basic = new javax.swing.JButton();
-        btn_advanced = new javax.swing.JButton();
+        btn_create = new javax.swing.JButton();
+        btn_search = new javax.swing.JButton();
         cmb_language = new javax.swing.JComboBox<>();
-        background = new javax.swing.JLabel();
+        btn_config = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setPreferredSize(new java.awt.Dimension(900, 550));
-        setResizable(false);
-        setSize(new java.awt.Dimension(900, 550));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         title.setFont(new java.awt.Font("Book Antiqua", 3, 48)); // NOI18N
@@ -47,19 +43,29 @@ public class maintitle extends javax.swing.JFrame {
         title.setText("Simple Curriculum");
         getContentPane().add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 424, 74));
 
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mainback.jpg"))); // NOI18N
+        getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 0, 580, 520));
+
         aside.setBackground(new java.awt.Color(1, 0, 73));
 
-        btn_basic.setText("Curriculum Basico");
-        btn_basic.addActionListener(new java.awt.event.ActionListener() {
+        btn_create.setText("Crear Curriculum");
+        btn_create.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_basicActionPerformed(evt);
+                btn_createActionPerformed(evt);
             }
         });
 
-        btn_advanced.setText("Curriculum Avanzado");
+        btn_search.setText("Buscar Curriculum");
+        btn_search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_searchActionPerformed(evt);
+            }
+        });
 
         cmb_language.setMaximumRowCount(3);
         cmb_language.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Español", "English" }));
+
+        btn_config.setText("Configuracion");
 
         javax.swing.GroupLayout asideLayout = new javax.swing.GroupLayout(aside);
         aside.setLayout(asideLayout);
@@ -71,13 +77,14 @@ public class maintitle extends javax.swing.JFrame {
                         .addGap(19, 19, 19)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(asideLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(cmb_language, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(asideLayout.createSequentialGroup()
                         .addGap(42, 42, 42)
                         .addGroup(asideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btn_basic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btn_advanced, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)))
-                    .addGroup(asideLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(cmb_language, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btn_create, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btn_search, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+                            .addComponent(btn_config, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
         asideLayout.setVerticalGroup(
@@ -86,28 +93,34 @@ public class maintitle extends javax.swing.JFrame {
                 .addGap(111, 111, 111)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btn_basic)
+                .addComponent(btn_create)
                 .addGap(27, 27, 27)
-                .addComponent(btn_advanced)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 277, Short.MAX_VALUE)
+                .addComponent(btn_search)
+                .addGap(28, 28, 28)
+                .addComponent(btn_config)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 220, Short.MAX_VALUE)
                 .addComponent(cmb_language, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39))
+                .addGap(15, 15, 15))
         );
 
-        getContentPane().add(aside, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 330, 550));
-
-        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mainback.jpg"))); // NOI18N
-        getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 0, 1230, -1));
+        getContentPane().add(aside, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 330, 520));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_basicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_basicActionPerformed
-        
-        Basic open = new Basic();
+    private void btn_createActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_createActionPerformed
+
+        Create open = new Create();
         open.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btn_basicActionPerformed
+    }//GEN-LAST:event_btn_createActionPerformed
+
+    private void btn_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_searchActionPerformed
+        
+        Search open = new Search();
+        open.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_searchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -126,20 +139,20 @@ public class maintitle extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(maintitle.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(maintitle.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(maintitle.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(maintitle.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new maintitle().setVisible(true);
+                new MainView().setVisible(true);
             }
         });
     }
@@ -147,8 +160,9 @@ public class maintitle extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel aside;
     private javax.swing.JLabel background;
-    private javax.swing.JButton btn_advanced;
-    private javax.swing.JButton btn_basic;
+    private javax.swing.JButton btn_config;
+    private javax.swing.JButton btn_create;
+    private javax.swing.JButton btn_search;
     private javax.swing.JComboBox<String> cmb_language;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel title;
