@@ -4,7 +4,7 @@
 
 package simplecurriculun;
 
-import java.util.Scanner;
+import views.MainTitle;
 
 /**
  *
@@ -13,11 +13,7 @@ import java.util.Scanner;
 public class SimpleCurriculun {
 
     public static void main(String[] args) {
-        System.out.println("prueba xd");
-        
-        Scanner sca = new Scanner(System.in);
-        
-        String s1 = sca.nextLine();
-        System.out.println("lo que escaneaste fue: " + s1);
+        MainTitle open = new MainTitle();
+        open.setVisible(true);
     }
 }
