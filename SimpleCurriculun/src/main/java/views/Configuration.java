@@ -15,6 +15,7 @@ public class Configuration extends javax.swing.JFrame {
      */
     public Configuration() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
