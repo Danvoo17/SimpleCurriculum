@@ -4,9 +4,19 @@
  */
 package views;
 
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -15,7 +25,9 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
+import reports.Experience;
 import reports.JasperLoader;
+import reports.Reference;
 
 /**
  *
@@ -30,7 +42,8 @@ public class CreateBasic extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         
-        
+        initPanelExp();
+        initPanelRef();
     }
 
     /**
@@ -43,9 +56,8 @@ public class CreateBasic extends javax.swing.JFrame {
     private void initComponents() {
 
         btn_back = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jPanel2 = new javax.swing.JPanel();
+        panel_background = new javax.swing.JPanel();
+        panel_base = new javax.swing.JPanel();
         lbl_name = new javax.swing.JLabel();
         lbl_address = new javax.swing.JLabel();
         txt_address = new javax.swing.JTextField();
@@ -79,6 +91,13 @@ public class CreateBasic extends javax.swing.JFrame {
         rad_college = new javax.swing.JRadioButton();
         rad_high = new javax.swing.JRadioButton();
         lbl_exp = new javax.swing.JLabel();
+        scrollExp = new javax.swing.JScrollPane();
+        panel_exp = new javax.swing.JPanel();
+        lbl_ref = new javax.swing.JLabel();
+        scrollref = new javax.swing.JScrollPane();
+        panel_ref = new javax.swing.JPanel();
+        btn_addref = new javax.swing.JButton();
+        btn_addexp = new javax.swing.JButton();
         btn_save = new javax.swing.JButton();
         title = new javax.swing.JLabel();
         separator_header = new javax.swing.JSeparator();
@@ -96,104 +115,134 @@ public class CreateBasic extends javax.swing.JFrame {
         });
         getContentPane().add(btn_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
-        jPanel1.setBackground(new java.awt.Color(1, 0, 73));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panel_background.setBackground(new java.awt.Color(1, 0, 73));
+        panel_background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jScrollPane1.setHorizontalScrollBar(null);
-
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panel_base.setBackground(new java.awt.Color(240, 240, 240));
+        panel_base.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lbl_name.setText("Nombre Completo");
-        jPanel2.add(lbl_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+        panel_base.add(lbl_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         lbl_address.setText("Direccion");
-        jPanel2.add(lbl_address, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
-        jPanel2.add(txt_address, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 180, -1));
+        panel_base.add(lbl_address, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
+        panel_base.add(txt_address, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 180, -1));
 
         lbl_phone.setText("Numero Telefonico");
-        jPanel2.add(lbl_phone, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
+        panel_base.add(lbl_phone, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
 
         lbl_email.setText("Correo Electronico (opcional)");
-        jPanel2.add(lbl_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
+        panel_base.add(lbl_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
 
         lbl_birth.setText("Fecha de Nacimiento");
-        jPanel2.add(lbl_birth, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, -1, -1));
+        panel_base.add(lbl_birth, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, -1, -1));
 
         lbl_birthplace.setText("Lugar de Nacimiento");
-        jPanel2.add(lbl_birthplace, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, -1, -1));
+        panel_base.add(lbl_birthplace, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, -1, -1));
 
         lbl_state.setText("Estado Civil");
-        jPanel2.add(lbl_state, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, -1, -1));
+        panel_base.add(lbl_state, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, -1, -1));
 
         lbl_nation.setText("Nacionalidad");
-        jPanel2.add(lbl_nation, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 70, -1, -1));
+        panel_base.add(lbl_nation, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 70, -1, -1));
 
         lbl_cedula.setText("Cedula");
-        jPanel2.add(lbl_cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 130, -1, -1));
+        panel_base.add(lbl_cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 130, -1, -1));
 
         lbl_primary.setText("Estudios Primarios");
-        jPanel2.add(lbl_primary, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, -1, -1));
-        jPanel2.add(txt_birthplace, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 180, -1));
+        panel_base.add(lbl_primary, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, -1, -1));
+        panel_base.add(txt_birthplace, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 180, -1));
 
         txt_name.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_nameActionPerformed(evt);
             }
         });
-        jPanel2.add(txt_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 180, -1));
-        jPanel2.add(txt_phone, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 180, -1));
-        jPanel2.add(txt_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 180, -1));
+        panel_base.add(txt_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 180, -1));
+        panel_base.add(txt_phone, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 180, -1));
+        panel_base.add(txt_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 180, -1));
 
         txt_day.setText("1");
-        jPanel2.add(txt_day, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 20, -1));
+        panel_base.add(txt_day, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 20, -1));
 
         lbl_separator.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         lbl_separator.setText(":");
-        jPanel2.add(lbl_separator, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, 10, 30));
+        panel_base.add(lbl_separator, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, 10, 30));
 
         cmb_month.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
-        jPanel2.add(cmb_month, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, -1, 20));
+        panel_base.add(cmb_month, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, -1, 20));
 
         lbl_month.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lbl_month.setText("/");
-        jPanel2.add(lbl_month, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, -1, 20));
+        panel_base.add(lbl_month, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, -1, 20));
 
         txt_year.setText("1900");
-        jPanel2.add(txt_year, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 270, 40, -1));
+        panel_base.add(txt_year, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 270, 40, -1));
 
         cmb_state.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Soltero.", "Soltera.", "Casado.", "Casada.", "Union Libre." }));
-        jPanel2.add(cmb_state, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, 160, -1));
+        panel_base.add(cmb_state, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, 160, -1));
 
         txt_nation.setText("Dominicana");
-        jPanel2.add(txt_nation, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 160, -1));
-        jPanel2.add(txt_cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, 160, -1));
-        jPanel2.add(txt_primary, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, 160, -1));
+        panel_base.add(txt_nation, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 160, -1));
+        panel_base.add(txt_cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, 160, -1));
+        panel_base.add(txt_primary, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, 160, -1));
 
         lbl_high.setText("Estudios Secundarios");
-        jPanel2.add(lbl_high, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, -1, -1));
-        jPanel2.add(txt_high, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, 160, -1));
+        panel_base.add(lbl_high, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, -1, -1));
+        panel_base.add(txt_high, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, 160, -1));
 
         lbl_college.setText("Universidad");
-        jPanel2.add(lbl_college, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 310, -1, -1));
-        jPanel2.add(txt_college, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 330, 50, -1));
+        panel_base.add(lbl_college, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 310, -1, -1));
+        panel_base.add(txt_college, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 330, 50, -1));
 
         lbl_year.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lbl_year.setText(" /");
-        jPanel2.add(lbl_year, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, 30, 20));
-        jPanel2.add(txt_career, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 330, 100, -1));
+        panel_base.add(lbl_year, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, 30, 20));
+        panel_base.add(txt_career, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 330, 100, -1));
 
         rad_college.setText("Si");
-        jPanel2.add(rad_college, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 310, 40, 20));
+        panel_base.add(rad_college, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 310, 40, 20));
 
-        rad_high.setText("Si");
-        jPanel2.add(rad_high, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 250, 40, 20));
+        rad_high.setText("No");
+        panel_base.add(rad_high, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, 50, 20));
 
         lbl_exp.setText("Experiencia Laboral");
-        jPanel2.add(lbl_exp, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 10, -1, -1));
+        panel_base.add(lbl_exp, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 10, -1, -1));
 
-        jScrollPane1.setViewportView(jPanel2);
+        scrollExp.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 700, 380));
+        panel_exp.setBackground(new java.awt.Color(255, 255, 255));
+        panel_exp.setLayout(new javax.swing.BoxLayout(panel_exp, javax.swing.BoxLayout.LINE_AXIS));
+        scrollExp.setViewportView(panel_exp);
+
+        panel_base.add(scrollExp, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 30, 240, 140));
+
+        lbl_ref.setText("Referencia Personal");
+        panel_base.add(lbl_ref, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 190, -1, -1));
+
+        panel_ref.setBackground(new java.awt.Color(255, 255, 255));
+        panel_ref.setLayout(new javax.swing.BoxLayout(panel_ref, javax.swing.BoxLayout.LINE_AXIS));
+        scrollref.setViewportView(panel_ref);
+
+        panel_base.add(scrollref, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 210, 240, 140));
+
+        btn_addref.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
+        btn_addref.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_addrefActionPerformed(evt);
+            }
+        });
+        panel_base.add(btn_addref, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 190, 20, 20));
+
+        btn_addexp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
+        btn_addexp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_addexpActionPerformed(evt);
+            }
+        });
+        panel_base.add(btn_addexp, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 10, 20, 20));
+
+        panel_background.add(panel_base, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 700, 380));
 
         btn_save.setText("Guardar e imprimir");
         btn_save.addActionListener(new java.awt.event.ActionListener() {
@@ -201,9 +250,9 @@ public class CreateBasic extends javax.swing.JFrame {
                 btn_saveActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_save, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 410, -1, -1));
+        panel_background.add(btn_save, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 410, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 910, 450));
+        getContentPane().add(panel_background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 910, 450));
 
         title.setFont(new java.awt.Font("Book Antiqua", 3, 48)); // NOI18N
         title.setForeground(new java.awt.Color(255, 255, 255));
@@ -232,6 +281,10 @@ public class CreateBasic extends javax.swing.JFrame {
 
     private void btn_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_saveActionPerformed
         
+            // Create the lists for Experience and Reference
+            List<Experience> experiences = new ArrayList<>();
+            List<Reference> references = new ArrayList<>();
+            
             // Create a hashmap with the textFields data
             Map<String, Object> parametros = new HashMap<>();
             parametros.put("name", txt_name.getText());
@@ -260,12 +313,104 @@ public class CreateBasic extends javax.swing.JFrame {
             String finalBirth = day + " de " + month + " de " + year + ".";
             parametros.put("birth", finalBirth);
             
+            // Run through experiences
+            for (Component comp : panel_exp.getComponents()) {
+                if (comp instanceof JPanel) {
+                    JPanel row = (JPanel) comp;
+                    JTextField txt_company = (JTextField) row.getComponent(0);
+                    JTextField txt_position = (JTextField) row.getComponent(1);
+                    experiences.add(new Experience(txt_company.getText(), txt_position.getText()));
+                }
+            }
+
+            // Run through 
+            for (Component comp : panel_ref.getComponents()) {
+                if (comp instanceof JPanel) {
+                    JPanel row = (JPanel) comp;
+                    JTextField txt_refname = (JTextField) row.getComponent(0);
+                    JTextField txt_refphone = (JTextField) row.getComponent(1);
+                    references.add(new Reference(txt_refname.getText(), txt_refphone.getText()));
+                }
+            }
+            
             // Show the generated curriculum
-            JasperLoader.generarReporte(parametros);
+            JasperLoader.generarReporte(parametros, experiences, references);
+            
     }//GEN-LAST:event_btn_saveActionPerformed
+
+    private void btn_addexpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_addexpActionPerformed
         
+        addexp();
+    }//GEN-LAST:event_btn_addexpActionPerformed
+
+    private void btn_addrefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_addrefActionPerformed
+        
+        addref();
+    }//GEN-LAST:event_btn_addrefActionPerformed
     
+    private void initPanelExp() {
+        panel_exp.setLayout(new BoxLayout(panel_exp, BoxLayout.Y_AXIS));
+        scrollExp.setViewportView(panel_exp);
+    }
     
+    private void initPanelRef() {
+        panel_ref.setLayout(new BoxLayout(panel_ref, BoxLayout.Y_AXIS));
+        scrollref.setViewportView(panel_ref);
+    }
+    
+    private void addexp() {
+        JPanel fila = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        fila.setBackground(Color.WHITE);
+    
+        JTextField txt_company = new JTextField("empresa", 15);
+        JTextField txt_position = new JTextField("puesto", 15);
+        JButton btn_deletexp = new JButton("X");
+        
+        btn_deletexp.setPreferredSize(new Dimension(43, 20));
+        btn_deletexp.setBackground(Color.RED);
+        btn_deletexp.setForeground(Color.WHITE);
+
+        btn_deletexp.addActionListener(e -> {
+            panel_exp.remove(fila);
+            panel_exp.revalidate();
+            panel_exp.repaint();
+        });
+
+        fila.add(txt_company);
+        fila.add(txt_position);
+        fila.add(btn_deletexp);
+
+        panel_exp.add(fila);
+        panel_exp.revalidate();
+        panel_exp.repaint();
+    }
+    
+    private void addref() {
+        JPanel fila = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        fila.setBackground(Color.WHITE);
+    
+        JTextField txt_refname = new JTextField("nombre", 15);
+        JTextField txt_refphone = new JTextField("telefono", 15);
+        JButton btn_deletref = new JButton("X");
+        
+        btn_deletref.setPreferredSize(new Dimension(43, 20));
+        btn_deletref.setBackground(Color.RED);
+        btn_deletref.setForeground(Color.WHITE);
+
+        btn_deletref.addActionListener(e -> {
+            panel_ref.remove(fila);
+            panel_ref.revalidate();
+            panel_ref.repaint();
+        });
+
+        fila.add(txt_refname);
+        fila.add(txt_refphone);
+        fila.add(btn_deletref);
+
+        panel_ref.add(fila);
+        panel_ref.revalidate();
+        panel_ref.repaint();
+    }
     
     
     /**
@@ -305,13 +450,12 @@ public class CreateBasic extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel background;
+    private javax.swing.JButton btn_addexp;
+    private javax.swing.JButton btn_addref;
     private javax.swing.JButton btn_back;
     private javax.swing.JButton btn_save;
     private javax.swing.JComboBox<String> cmb_month;
     private javax.swing.JComboBox<String> cmb_state;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbl_address;
     private javax.swing.JLabel lbl_birth;
     private javax.swing.JLabel lbl_birthplace;
@@ -325,11 +469,18 @@ public class CreateBasic extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_nation;
     private javax.swing.JLabel lbl_phone;
     private javax.swing.JLabel lbl_primary;
+    private javax.swing.JLabel lbl_ref;
     private javax.swing.JLabel lbl_separator;
     private javax.swing.JLabel lbl_state;
     private javax.swing.JLabel lbl_year;
+    private javax.swing.JPanel panel_background;
+    private javax.swing.JPanel panel_base;
+    private javax.swing.JPanel panel_exp;
+    private javax.swing.JPanel panel_ref;
     private javax.swing.JRadioButton rad_college;
     private javax.swing.JRadioButton rad_high;
+    private javax.swing.JScrollPane scrollExp;
+    private javax.swing.JScrollPane scrollref;
     private javax.swing.JSeparator separator_header;
     private javax.swing.JLabel title;
     private javax.swing.JTextField txt_address;

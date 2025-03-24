@@ -4,6 +4,7 @@
  */
 package reports;
 
+import java.util.List;
 import java.util.Map;
 import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JREmptyDataSource;
@@ -12,6 +13,7 @@ import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
@@ -20,8 +22,8 @@ import net.sf.jasperreports.view.JasperViewer;
  * @author Ronny Trinidad
  */
 public class JasperLoader {
-    
-    public static void generarReporte(Map<String, Object> parametros) {
+
+    public static void generarReporte(Map<String, Object> parametros, List<Experience> experiences, List<Reference> references) {
         try {
             // Ruta al archivo .jrxml dentro de la carpeta reports
             String jrxmlPath = "src/main/java/reports/Basic.jrxml";
@@ -33,7 +35,15 @@ public class JasperLoader {
             // Cargar el archivo .jasper
             JasperReport reporte = (JasperReport) JRLoader.loadObjectFromFile(jasperPath);
 
-            // Llenar el reporte (sin conexión a BD, solo parámetros)
+            // Convertir listas en JRBeanCollectionDataSource
+            JRBeanCollectionDataSource experienceDataSource = new JRBeanCollectionDataSource(experiences);
+            JRBeanCollectionDataSource referenceDataSource = new JRBeanCollectionDataSource(references);
+
+            // Agregar los nuevos parámetros
+            parametros.put("EXPERIENCE_DATASOURCE", experienceDataSource);
+            parametros.put("REFERENCE_DATASOURCE", referenceDataSource);
+
+            // Llenar el reporte
             JasperPrint print = JasperFillManager.fillReport(reporte, parametros, new JREmptyDataSource());
 
             // Mostrar el reporte
@@ -44,5 +54,5 @@ public class JasperLoader {
             JOptionPane.showMessageDialog(null, "Error al generar el reporte: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
 }
+
