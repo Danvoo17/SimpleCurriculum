@@ -6,9 +6,7 @@ package views;
 
 import java.util.HashMap;
 import java.util.Map;
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -17,6 +15,7 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
+import reports.JasperLoader;
 
 /**
  *
@@ -31,7 +30,7 @@ public class CreateBasic extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         
-        compilarReporte();
+        
     }
 
     /**
@@ -162,7 +161,7 @@ public class CreateBasic extends javax.swing.JFrame {
         txt_year.setText("1900");
         jPanel2.add(txt_year, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 270, 40, -1));
 
-        cmb_state.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Soltero", "Soltera", "Casado", "Casada", "Union Libre" }));
+        cmb_state.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Soltero.", "Soltera.", "Casado.", "Casada.", "Union Libre." }));
         jPanel2.add(cmb_state, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, 160, -1));
 
         txt_nation.setText("Dominicana");
@@ -232,31 +231,8 @@ public class CreateBasic extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_nameActionPerformed
 
     private void btn_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_saveActionPerformed
-        // TODO add your handling code here:
         
-        generarReporte();
-    }//GEN-LAST:event_btn_saveActionPerformed
-
-    public void compilarReporte() {
-        try {
-            // .jrxml file route
-            String jrxmlPath = "/reports/Basic.jrxml";
-            // compile jrxml to jasper
-            JasperCompileManager.compileReportToFile(jrxmlPath, "/reports/Basic.jasper");
-            JOptionPane.showMessageDialog(this, "Reporte compilado con éxito", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-        } catch (JRException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Error al compilar el reporte", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-    
-    public void generarReporte() {
-        try {
-            // 1. .jasper file route
-            String reportePath = "src/reports/Curriculum.jasper";
-            JasperReport reporte = (JasperReport) JRLoader.loadObjectFromFile(reportePath);
-
-            // 2. create a hashmap with the textFields data
+            // Create a hashmap with the textFields data
             Map<String, Object> parametros = new HashMap<>();
             parametros.put("name", txt_name.getText());
             parametros.put("address", txt_address.getText());
@@ -283,19 +259,11 @@ public class CreateBasic extends javax.swing.JFrame {
             String year = txt_year.getText();
             String finalBirth = day + " de " + month + " de " + year + ".";
             parametros.put("birth", finalBirth);
-
-            // 3. fill the report with the hashmap
-            JasperPrint print = JasperFillManager.fillReport(reporte, parametros, new JREmptyDataSource());
-
-            // 4. show the report
-            JasperViewer.viewReport(print, false);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Error al generar el reporte", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-    
+            
+            // Show the generated curriculum
+            JasperLoader.generarReporte(parametros);
+    }//GEN-LAST:event_btn_saveActionPerformed
+        
     
     
     
