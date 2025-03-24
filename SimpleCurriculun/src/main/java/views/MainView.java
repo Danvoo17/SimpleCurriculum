@@ -32,7 +32,6 @@ public class MainView extends javax.swing.JFrame {
         aside = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
         btn_create = new javax.swing.JButton();
-        btn_search = new javax.swing.JButton();
         btn_config = new javax.swing.JButton();
         lbl_version = new javax.swing.JLabel();
 
@@ -57,14 +56,12 @@ public class MainView extends javax.swing.JFrame {
             }
         });
 
-        btn_search.setText("Buscar Curriculum");
-        btn_search.addActionListener(new java.awt.event.ActionListener() {
+        btn_config.setText("Configuracion");
+        btn_config.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_searchActionPerformed(evt);
+                btn_configActionPerformed(evt);
             }
         });
-
-        btn_config.setText("Configuracion");
 
         lbl_version.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lbl_version.setForeground(new java.awt.Color(255, 255, 255));
@@ -79,8 +76,7 @@ public class MainView extends javax.swing.JFrame {
                     .addGroup(asideLayout.createSequentialGroup()
                         .addGap(42, 42, 42)
                         .addGroup(asideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btn_create, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btn_search, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+                            .addComponent(btn_create, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
                             .addComponent(btn_config, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(asideLayout.createSequentialGroup()
                         .addGap(19, 19, 19)
@@ -96,11 +92,9 @@ public class MainView extends javax.swing.JFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btn_create)
-                .addGap(27, 27, 27)
-                .addComponent(btn_search)
-                .addGap(28, 28, 28)
+                .addGap(29, 29, 29)
                 .addComponent(btn_config)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 217, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 266, Short.MAX_VALUE)
                 .addComponent(lbl_version)
                 .addGap(20, 20, 20))
         );
@@ -117,12 +111,12 @@ public class MainView extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btn_createActionPerformed
 
-    private void btn_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_searchActionPerformed
+    private void btn_configActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_configActionPerformed
         
-        Search open = new Search();
+        Configuration open = new Configuration();
         open.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btn_searchActionPerformed
+    }//GEN-LAST:event_btn_configActionPerformed
 
     /**
      * @param args the command line arguments
@@ -164,7 +158,6 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JLabel background;
     private javax.swing.JButton btn_config;
     private javax.swing.JButton btn_create;
-    private javax.swing.JButton btn_search;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lbl_version;
     private javax.swing.JLabel title;

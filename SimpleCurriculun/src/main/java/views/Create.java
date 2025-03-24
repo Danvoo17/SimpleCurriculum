@@ -4,6 +4,8 @@
  */
 package views;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Ronny Trinidad
@@ -60,7 +62,12 @@ public class Create extends javax.swing.JFrame {
         });
         jPanel1.add(btn_basic, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
-        btn_advanced.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Sin título.png"))); // NOI18N
+        btn_advanced.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/CAdvanced.PNG"))); // NOI18N
+        btn_advanced.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_advancedActionPerformed(evt);
+            }
+        });
         jPanel1.add(btn_advanced, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, -1, -1));
 
         lbl_basic.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -102,6 +109,11 @@ public class Create extends javax.swing.JFrame {
         open.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_basicActionPerformed
+
+    private void btn_advancedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_advancedActionPerformed
+        
+        JOptionPane.showMessageDialog(null, "Aún no está disponible", "Información", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_btn_advancedActionPerformed
 
     /**
      * @param args the command line arguments

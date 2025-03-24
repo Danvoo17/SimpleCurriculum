@@ -14,17 +14,8 @@ import java.util.List;
 import java.util.Map;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import net.sf.jasperreports.engine.JREmptyDataSource;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.util.JRLoader;
-import net.sf.jasperreports.view.JasperViewer;
 import reports.Experience;
 import reports.JasperLoader;
 import reports.Reference;
@@ -56,7 +47,7 @@ public class CreateBasic extends javax.swing.JFrame {
     private void initComponents() {
 
         btn_back = new javax.swing.JButton();
-        panel_background = new javax.swing.JPanel();
+        title = new javax.swing.JLabel();
         panel_base = new javax.swing.JPanel();
         lbl_name = new javax.swing.JLabel();
         lbl_address = new javax.swing.JLabel();
@@ -98,9 +89,9 @@ public class CreateBasic extends javax.swing.JFrame {
         panel_ref = new javax.swing.JPanel();
         btn_addref = new javax.swing.JButton();
         btn_addexp = new javax.swing.JButton();
-        btn_save = new javax.swing.JButton();
-        title = new javax.swing.JLabel();
+        btn_print = new javax.swing.JButton();
         separator_header = new javax.swing.JSeparator();
+        panel_header = new javax.swing.JPanel();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -115,8 +106,10 @@ public class CreateBasic extends javax.swing.JFrame {
         });
         getContentPane().add(btn_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
-        panel_background.setBackground(new java.awt.Color(1, 0, 73));
-        panel_background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        title.setFont(new java.awt.Font("Book Antiqua", 3, 48)); // NOI18N
+        title.setForeground(new java.awt.Color(255, 255, 255));
+        title.setText("Basico");
+        getContentPane().add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, 150, 74));
 
         panel_base.setBackground(new java.awt.Color(240, 240, 240));
         panel_base.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -152,12 +145,6 @@ public class CreateBasic extends javax.swing.JFrame {
         lbl_primary.setText("Estudios Primarios");
         panel_base.add(lbl_primary, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, -1, -1));
         panel_base.add(txt_birthplace, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 180, -1));
-
-        txt_name.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_nameActionPerformed(evt);
-            }
-        });
         panel_base.add(txt_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 180, -1));
         panel_base.add(txt_phone, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 180, -1));
         panel_base.add(txt_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 180, -1));
@@ -242,25 +229,21 @@ public class CreateBasic extends javax.swing.JFrame {
         });
         panel_base.add(btn_addexp, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 10, 20, 20));
 
-        panel_background.add(panel_base, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 700, 380));
+        getContentPane().add(panel_base, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 700, 380));
 
-        btn_save.setText("Guardar e imprimir");
-        btn_save.addActionListener(new java.awt.event.ActionListener() {
+        btn_print.setText("Imprimir");
+        btn_print.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_saveActionPerformed(evt);
+                btn_printActionPerformed(evt);
             }
         });
-        panel_background.add(btn_save, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 410, -1, -1));
-
-        getContentPane().add(panel_background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 910, 450));
-
-        title.setFont(new java.awt.Font("Book Antiqua", 3, 48)); // NOI18N
-        title.setForeground(new java.awt.Color(255, 255, 255));
-        title.setText("Basico");
-        getContentPane().add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, 150, 74));
+        getContentPane().add(btn_print, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 480, -1, -1));
 
         separator_header.setOrientation(javax.swing.SwingConstants.VERTICAL);
         getContentPane().add(separator_header, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 10, 50));
+
+        panel_header.setBackground(new java.awt.Color(1, 0, 73));
+        getContentPane().add(panel_header, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 910, 70));
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mainback.jpg"))); // NOI18N
         getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 910, 520));
@@ -275,78 +258,75 @@ public class CreateBasic extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btn_backActionPerformed
 
-    private void txt_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_nameActionPerformed
-
-    private void btn_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_saveActionPerformed
-        
-            // Create the lists for Experience and Reference
-            List<Experience> experiences = new ArrayList<>();
-            List<Reference> references = new ArrayList<>();
-            
-            // Create a hashmap with the textFields data
-            Map<String, Object> parametros = new HashMap<>();
-            parametros.put("name", txt_name.getText());
-            parametros.put("address", txt_address.getText());
-            parametros.put("birthplace", txt_birthplace.getText());
-            parametros.put("state", cmb_state.getSelectedItem());
-            parametros.put("nation", txt_nation.getText());
-            parametros.put("cedula", txt_cedula.getText());
-            parametros.put("primary", txt_primary.getText());
-            parametros.put("high", txt_high.getText());
-            
-            // Add "Cel.: " to the number start
-            String phone = txt_phone.getText().trim();
-            String finalPhone = "Cel.: " + phone;
-            parametros.put("phone", finalPhone);
-
-            // Verify if the email is empty.
-            String email = txt_email.getText().trim();
-            String finalEmail = email.isEmpty() ? "" : "Email.: " + email;
-            parametros.put("email", finalEmail);
-            
-            // Put the birthday data together
-            String day = txt_day.getText().trim();
-            String month = (String) cmb_month.getSelectedItem();
-            String year = txt_year.getText();
-            String finalBirth = day + " de " + month + " de " + year + ".";
-            parametros.put("birth", finalBirth);
-            
-            // Run through experiences
-            for (Component comp : panel_exp.getComponents()) {
-                if (comp instanceof JPanel) {
-                    JPanel row = (JPanel) comp;
-                    JTextField txt_company = (JTextField) row.getComponent(0);
-                    JTextField txt_position = (JTextField) row.getComponent(1);
-                    experiences.add(new Experience(txt_company.getText(), txt_position.getText()));
-                }
-            }
-
-            // Run through 
-            for (Component comp : panel_ref.getComponents()) {
-                if (comp instanceof JPanel) {
-                    JPanel row = (JPanel) comp;
-                    JTextField txt_refname = (JTextField) row.getComponent(0);
-                    JTextField txt_refphone = (JTextField) row.getComponent(1);
-                    references.add(new Reference(txt_refname.getText(), txt_refphone.getText()));
-                }
-            }
-            
-            // Show the generated curriculum
-            JasperLoader.generarReporte(parametros, experiences, references);
-            
-    }//GEN-LAST:event_btn_saveActionPerformed
-
     private void btn_addexpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_addexpActionPerformed
-        
+
         addexp();
     }//GEN-LAST:event_btn_addexpActionPerformed
 
     private void btn_addrefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_addrefActionPerformed
-        
+
         addref();
     }//GEN-LAST:event_btn_addrefActionPerformed
+
+    private void btn_printActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_printActionPerformed
+
+        // Create the lists for Experience and Reference
+        List<Experience> experiences = new ArrayList<>();
+        List<Reference> references = new ArrayList<>();
+
+        // Create a hashmap with the textFields data
+        Map<String, Object> parametros = new HashMap<>();
+        parametros.put("name", txt_name.getText());
+        parametros.put("address", txt_address.getText());
+        parametros.put("birthplace", txt_birthplace.getText());
+        parametros.put("state", cmb_state.getSelectedItem());
+        parametros.put("nation", txt_nation.getText());
+        parametros.put("cedula", txt_cedula.getText());
+        parametros.put("primary", txt_primary.getText());
+        parametros.put("high", txt_high.getText());
+
+        // Add "Cel.: " to the number start
+        String phone = txt_phone.getText().trim();
+        String finalPhone = "Cel.: " + phone;
+        parametros.put("phone", finalPhone);
+
+        // Verify if the email is empty.
+        String email = txt_email.getText().trim();
+        String finalEmail = email.isEmpty() ? "" : "Email.: " + email;
+        parametros.put("email", finalEmail);
+
+        // Put the birthday data together
+        String day = txt_day.getText().trim();
+        String month = (String) cmb_month.getSelectedItem();
+        String year = txt_year.getText();
+        String finalBirth = day + " de " + month + " de " + year + ".";
+        parametros.put("birth", finalBirth);
+
+        // Run through experiences
+        for (Component comp : panel_exp.getComponents()) {
+            if (comp instanceof JPanel) {
+                JPanel row = (JPanel) comp;
+                JTextField txt_company = (JTextField) row.getComponent(0);
+                JTextField txt_position = (JTextField) row.getComponent(1);
+                String companydot = txt_company.getText() + ":";
+                experiences.add(new Experience(companydot, txt_position.getText()));
+            }
+        }
+
+        // Run through
+        for (Component comp : panel_ref.getComponents()) {
+            if (comp instanceof JPanel) {
+                JPanel row = (JPanel) comp;
+                JTextField txt_refname = (JTextField) row.getComponent(0);
+                JTextField txt_refphone = (JTextField) row.getComponent(1);
+                String refdot = txt_refname.getText() + ":";
+                references.add(new Reference(refdot, txt_refphone.getText()));
+            }
+        }
+
+        // Show the generated curriculum
+        JasperLoader.generarReporte(parametros, experiences, references);
+    }//GEN-LAST:event_btn_printActionPerformed
     
     private void initPanelExp() {
         panel_exp.setLayout(new BoxLayout(panel_exp, BoxLayout.Y_AXIS));
@@ -453,7 +433,7 @@ public class CreateBasic extends javax.swing.JFrame {
     private javax.swing.JButton btn_addexp;
     private javax.swing.JButton btn_addref;
     private javax.swing.JButton btn_back;
-    private javax.swing.JButton btn_save;
+    private javax.swing.JButton btn_print;
     private javax.swing.JComboBox<String> cmb_month;
     private javax.swing.JComboBox<String> cmb_state;
     private javax.swing.JLabel lbl_address;
@@ -473,9 +453,9 @@ public class CreateBasic extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_separator;
     private javax.swing.JLabel lbl_state;
     private javax.swing.JLabel lbl_year;
-    private javax.swing.JPanel panel_background;
     private javax.swing.JPanel panel_base;
     private javax.swing.JPanel panel_exp;
+    private javax.swing.JPanel panel_header;
     private javax.swing.JPanel panel_ref;
     private javax.swing.JRadioButton rad_college;
     private javax.swing.JRadioButton rad_high;
