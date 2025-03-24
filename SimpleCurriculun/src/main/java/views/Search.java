@@ -33,12 +33,12 @@ public class Search extends javax.swing.JFrame {
         btn_back = new javax.swing.JButton();
         Separator = new javax.swing.JSeparator();
         txt_search = new javax.swing.JTextField();
-        btn_create = new javax.swing.JButton();
         btn_edit = new javax.swing.JButton();
         btn_delete = new javax.swing.JButton();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         title.setFont(new java.awt.Font("Book Antiqua", 3, 48)); // NOI18N
@@ -48,16 +48,32 @@ public class Search extends javax.swing.JFrame {
 
         Tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "id", "Nombre", "Telefono", "Cedula"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(Tabla);
+        if (Tabla.getColumnModel().getColumnCount() > 0) {
+            Tabla.getColumnModel().getColumn(0).setPreferredWidth(1);
+            Tabla.getColumnModel().getColumn(1).setPreferredWidth(200);
+        }
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 150, 670, 350));
 
@@ -79,22 +95,14 @@ public class Search extends javax.swing.JFrame {
         });
         getContentPane().add(txt_search, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 120, 170, -1));
 
-        btn_create.setText("Crear");
-        btn_create.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_createActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btn_create, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, -1, -1));
-
         btn_edit.setText("Editar");
-        getContentPane().add(btn_edit, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, -1, -1));
+        getContentPane().add(btn_edit, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, -1, -1));
 
-        btn_delete.setBackground(new java.awt.Color(255, 0, 0));
+        btn_delete.setBackground(new java.awt.Color(204, 0, 51));
         btn_delete.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btn_delete.setForeground(new java.awt.Color(255, 255, 255));
         btn_delete.setText("Eliminar");
-        getContentPane().add(btn_delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 120, -1, -1));
+        getContentPane().add(btn_delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, -1, -1));
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mainback.jpg"))); // NOI18N
         getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 910, 520));
@@ -108,13 +116,6 @@ public class Search extends javax.swing.JFrame {
         open.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_backActionPerformed
-
-    private void btn_createActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_createActionPerformed
-        
-        Create open = new Create();
-        open.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btn_createActionPerformed
 
     private void txt_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_searchActionPerformed
         // TODO add your handling code here:
@@ -160,7 +161,6 @@ public class Search extends javax.swing.JFrame {
     private javax.swing.JTable Tabla;
     private javax.swing.JLabel background;
     private javax.swing.JButton btn_back;
-    private javax.swing.JButton btn_create;
     private javax.swing.JButton btn_delete;
     private javax.swing.JButton btn_edit;
     private javax.swing.JScrollPane jScrollPane1;

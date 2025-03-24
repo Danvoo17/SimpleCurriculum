@@ -15,6 +15,7 @@ public class MainView extends javax.swing.JFrame {
      */
     public MainView() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -32,10 +33,11 @@ public class MainView extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         btn_create = new javax.swing.JButton();
         btn_search = new javax.swing.JButton();
-        cmb_language = new javax.swing.JComboBox<>();
         btn_config = new javax.swing.JButton();
+        lbl_version = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         title.setFont(new java.awt.Font("Book Antiqua", 3, 48)); // NOI18N
@@ -62,10 +64,11 @@ public class MainView extends javax.swing.JFrame {
             }
         });
 
-        cmb_language.setMaximumRowCount(3);
-        cmb_language.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Español", "English" }));
-
         btn_config.setText("Configuracion");
+
+        lbl_version.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lbl_version.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_version.setText("V. 1.0");
 
         javax.swing.GroupLayout asideLayout = new javax.swing.GroupLayout(aside);
         aside.setLayout(asideLayout);
@@ -74,17 +77,16 @@ public class MainView extends javax.swing.JFrame {
             .addGroup(asideLayout.createSequentialGroup()
                 .addGroup(asideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(asideLayout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(asideLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(cmb_language, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(asideLayout.createSequentialGroup()
                         .addGap(42, 42, 42)
                         .addGroup(asideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btn_create, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btn_search, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
-                            .addComponent(btn_config, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(btn_config, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(asideLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(asideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbl_version)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
         asideLayout.setVerticalGroup(
@@ -98,9 +100,9 @@ public class MainView extends javax.swing.JFrame {
                 .addComponent(btn_search)
                 .addGap(28, 28, 28)
                 .addComponent(btn_config)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 220, Short.MAX_VALUE)
-                .addComponent(cmb_language, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 217, Short.MAX_VALUE)
+                .addComponent(lbl_version)
+                .addGap(20, 20, 20))
         );
 
         getContentPane().add(aside, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 330, 520));
@@ -163,8 +165,8 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JButton btn_config;
     private javax.swing.JButton btn_create;
     private javax.swing.JButton btn_search;
-    private javax.swing.JComboBox<String> cmb_language;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lbl_version;
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
 }

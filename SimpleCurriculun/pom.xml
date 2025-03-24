@@ -8,13 +8,18 @@
     <dependencies>
         <dependency>
             <groupId>org.netbeans.external</groupId>
-            <artifactId>AbsoluteLayout</artifactId>
+                <artifactId>AbsoluteLayout</artifactId>
             <version>RELEASE240</version>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+                <artifactId>jasperreports</artifactId>
+            <version>6.21.0</version>
         </dependency>
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.release>23</maven.compiler.release>
+            <maven.compiler.release>23</maven.compiler.release>
         <exec.mainClass>simplecurriculun.SimpleCurriculun</exec.mainClass>
     </properties>
     <build>
