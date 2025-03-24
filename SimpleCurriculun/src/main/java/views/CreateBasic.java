@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import reports.Experience;
@@ -119,6 +120,12 @@ public class CreateBasic extends javax.swing.JFrame {
 
         lbl_address.setText("Direccion");
         panel_base.add(lbl_address, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
+
+        txt_address.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_addressKeyTyped(evt);
+            }
+        });
         panel_base.add(txt_address, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 180, -1));
 
         lbl_phone.setText("Numero Telefonico");
@@ -144,12 +151,35 @@ public class CreateBasic extends javax.swing.JFrame {
 
         lbl_primary.setText("Estudios Primarios");
         panel_base.add(lbl_primary, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, -1, -1));
+
+        txt_birthplace.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_birthplaceKeyTyped(evt);
+            }
+        });
         panel_base.add(txt_birthplace, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 180, -1));
+
+        txt_name.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_nameKeyTyped(evt);
+            }
+        });
         panel_base.add(txt_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 180, -1));
+
+        txt_phone.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_phoneKeyTyped(evt);
+            }
+        });
         panel_base.add(txt_phone, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 180, -1));
         panel_base.add(txt_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 180, -1));
 
         txt_day.setText("1");
+        txt_day.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_dayKeyTyped(evt);
+            }
+        });
         panel_base.add(txt_day, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 20, -1));
 
         lbl_separator.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
@@ -164,37 +194,63 @@ public class CreateBasic extends javax.swing.JFrame {
         panel_base.add(lbl_month, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, -1, 20));
 
         txt_year.setText("1900");
+        txt_year.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_yearKeyTyped(evt);
+            }
+        });
         panel_base.add(txt_year, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 270, 40, -1));
 
         cmb_state.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Soltero.", "Soltera.", "Casado.", "Casada.", "Union Libre." }));
-        panel_base.add(cmb_state, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, 160, -1));
+        panel_base.add(cmb_state, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, 170, 20));
 
         txt_nation.setText("Dominicana");
-        panel_base.add(txt_nation, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 160, -1));
-        panel_base.add(txt_cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, 160, -1));
-        panel_base.add(txt_primary, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, 160, -1));
+        txt_nation.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_nationKeyTyped(evt);
+            }
+        });
+        panel_base.add(txt_nation, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 170, -1));
+
+        txt_cedula.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_cedulaKeyTyped(evt);
+            }
+        });
+        panel_base.add(txt_cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, 170, -1));
+
+        txt_primary.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_primaryKeyTyped(evt);
+            }
+        });
+        panel_base.add(txt_primary, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, 170, -1));
 
         lbl_high.setText("Estudios Secundarios");
         panel_base.add(lbl_high, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, -1, -1));
-        panel_base.add(txt_high, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, 160, -1));
+        panel_base.add(txt_high, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, 170, -1));
 
         lbl_college.setText("Universidad");
         panel_base.add(lbl_college, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 310, -1, -1));
+
+        txt_college.setText("Uasd");
         panel_base.add(txt_college, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 330, 50, -1));
 
         lbl_year.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lbl_year.setText(" /");
         panel_base.add(lbl_year, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, 30, 20));
-        panel_base.add(txt_career, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 330, 100, -1));
+
+        txt_career.setText("Ingenieria en...");
+        panel_base.add(txt_career, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 330, 110, -1));
 
         rad_college.setText("Si");
         panel_base.add(rad_college, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 310, 40, 20));
 
         rad_high.setText("No");
-        panel_base.add(rad_high, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, 50, 20));
+        panel_base.add(rad_high, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 250, 50, 20));
 
         lbl_exp.setText("Experiencia Laboral");
-        panel_base.add(lbl_exp, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 10, -1, -1));
+        panel_base.add(lbl_exp, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, -1, -1));
 
         scrollExp.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -202,16 +258,16 @@ public class CreateBasic extends javax.swing.JFrame {
         panel_exp.setLayout(new javax.swing.BoxLayout(panel_exp, javax.swing.BoxLayout.LINE_AXIS));
         scrollExp.setViewportView(panel_exp);
 
-        panel_base.add(scrollExp, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 30, 240, 140));
+        panel_base.add(scrollExp, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 30, 240, 140));
 
         lbl_ref.setText("Referencia Personal");
-        panel_base.add(lbl_ref, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 190, -1, -1));
+        panel_base.add(lbl_ref, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 190, -1, -1));
 
         panel_ref.setBackground(new java.awt.Color(255, 255, 255));
         panel_ref.setLayout(new javax.swing.BoxLayout(panel_ref, javax.swing.BoxLayout.LINE_AXIS));
         scrollref.setViewportView(panel_ref);
 
-        panel_base.add(scrollref, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 210, 240, 140));
+        panel_base.add(scrollref, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 210, 240, 140));
 
         btn_addref.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
         btn_addref.addActionListener(new java.awt.event.ActionListener() {
@@ -219,7 +275,7 @@ public class CreateBasic extends javax.swing.JFrame {
                 btn_addrefActionPerformed(evt);
             }
         });
-        panel_base.add(btn_addref, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 190, 20, 20));
+        panel_base.add(btn_addref, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 190, 20, 20));
 
         btn_addexp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
         btn_addexp.addActionListener(new java.awt.event.ActionListener() {
@@ -227,9 +283,9 @@ public class CreateBasic extends javax.swing.JFrame {
                 btn_addexpActionPerformed(evt);
             }
         });
-        panel_base.add(btn_addexp, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 10, 20, 20));
+        panel_base.add(btn_addexp, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 10, 20, 20));
 
-        getContentPane().add(panel_base, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 700, 380));
+        getContentPane().add(panel_base, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 710, 380));
 
         btn_print.setText("Imprimir");
         btn_print.addActionListener(new java.awt.event.ActionListener() {
@@ -270,6 +326,100 @@ public class CreateBasic extends javax.swing.JFrame {
 
     private void btn_printActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_printActionPerformed
 
+        printReport();
+    }//GEN-LAST:event_btn_printActionPerformed
+
+    private void txt_nameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nameKeyTyped
+        
+        txt_name.setBackground(Color.WHITE);
+    }//GEN-LAST:event_txt_nameKeyTyped
+
+    private void txt_addressKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_addressKeyTyped
+        
+        txt_address.setBackground(Color.WHITE);
+    }//GEN-LAST:event_txt_addressKeyTyped
+
+    private void txt_phoneKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_phoneKeyTyped
+        
+        txt_phone.setBackground(Color.WHITE);
+    }//GEN-LAST:event_txt_phoneKeyTyped
+
+    private void txt_dayKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_dayKeyTyped
+        
+        txt_day.setBackground(Color.WHITE);
+    }//GEN-LAST:event_txt_dayKeyTyped
+
+    private void txt_yearKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_yearKeyTyped
+        
+        txt_year.setBackground(Color.WHITE);
+    }//GEN-LAST:event_txt_yearKeyTyped
+
+    private void txt_birthplaceKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_birthplaceKeyTyped
+        
+        txt_birthplace.setBackground(Color.WHITE);
+    }//GEN-LAST:event_txt_birthplaceKeyTyped
+
+    private void txt_nationKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nationKeyTyped
+        
+        txt_nation.setBackground(Color.WHITE);
+    }//GEN-LAST:event_txt_nationKeyTyped
+
+    private void txt_cedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_cedulaKeyTyped
+        
+        txt_cedula.setBackground(Color.WHITE);
+    }//GEN-LAST:event_txt_cedulaKeyTyped
+
+    private void txt_primaryKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_primaryKeyTyped
+        
+        txt_primary.setBackground(Color.WHITE);
+    }//GEN-LAST:event_txt_primaryKeyTyped
+    
+    private void printReport() {
+        
+        // Verify if required text fields are empty
+        if (txt_name.getText().trim().isEmpty() || 
+            txt_address.getText().trim().isEmpty() || 
+            txt_phone.getText().trim().isEmpty() ||
+            txt_day.getText().trim().isEmpty() && txt_year.getText().trim().isEmpty() ||
+            txt_birthplace.getText().trim().isEmpty() ||
+            txt_nation.getText().trim().isEmpty() ||
+            txt_cedula.getText().trim().isEmpty() ||
+            txt_primary.getText().trim().isEmpty()) 
+            {
+                // Validate if each textfield is empty to change color
+                if (txt_name.getText().trim().isEmpty()) {
+                    txt_name.setBackground(new Color(255, 195, 195));
+                } 
+                if (txt_address.getText().trim().isEmpty()) {
+                    txt_address.setBackground(new Color(255, 195, 195));
+                } 
+                if (txt_phone.getText().trim().isEmpty()) {
+                    txt_phone.setBackground(new Color(255, 195, 195));
+                } 
+                if (txt_day.getText().trim().isEmpty()) {
+                    txt_day.setBackground(new Color(255, 195, 195));
+                }   
+                if (txt_year.getText().trim().isEmpty()) {
+                    txt_year.setBackground(new Color(255, 195, 195));
+                } 
+                if (txt_birthplace.getText().trim().isEmpty()) {
+                    txt_birthplace.setBackground(new Color(255, 195, 195));
+                } 
+                if (txt_nation.getText().trim().isEmpty()) {
+                    txt_nation.setBackground(new Color(255, 195, 195));
+                } 
+                if (txt_cedula.getText().trim().isEmpty()) {
+                    txt_cedula.setBackground(new Color(255, 195, 195));
+                } 
+                if (txt_primary.getText().trim().isEmpty()) {
+                    txt_primary.setBackground(new Color(255, 195, 195));
+                }
+                 
+            // Show dialog
+            JOptionPane.showMessageDialog(this, "Llene los campos requeridos!.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
         // Create the lists for Experience and Reference
         List<Experience> experiences = new ArrayList<>();
         List<Reference> references = new ArrayList<>();
@@ -301,8 +451,14 @@ public class CreateBasic extends javax.swing.JFrame {
         String year = txt_year.getText();
         String finalBirth = day + " de " + month + " de " + year + ".";
         parametros.put("birth", finalBirth);
+        
+        //Put the college data together
+        String college = txt_college.getText().trim().toUpperCase();
+        String career = txt_career.getText().trim();
+        String finalCollege = career + " (" + college + ").";
+        parametros.put("college", finalCollege);
 
-        // Run through experiences
+        // Run through laboral experiences
         for (Component comp : panel_exp.getComponents()) {
             if (comp instanceof JPanel) {
                 JPanel row = (JPanel) comp;
@@ -313,7 +469,7 @@ public class CreateBasic extends javax.swing.JFrame {
             }
         }
 
-        // Run through
+        // Run through pesonal references
         for (Component comp : panel_ref.getComponents()) {
             if (comp instanceof JPanel) {
                 JPanel row = (JPanel) comp;
@@ -324,9 +480,21 @@ public class CreateBasic extends javax.swing.JFrame {
             }
         }
 
-        // Show the generated curriculum
-        JasperLoader.generarReporte(parametros, experiences, references);
-    }//GEN-LAST:event_btn_printActionPerformed
+        // Show the generated curriculum depending on the selected ratios
+        if(rad_high.isSelected()) {
+            
+            JasperLoader.generateBasicNoHigh(parametros, experiences, references);
+        }
+        else if(rad_college.isSelected()) {
+            
+            JasperLoader.generateBasicUni(parametros, experiences, references);
+        }
+        else {
+            
+            JasperLoader.generateBasic(parametros, experiences, references);
+        }
+        
+    }
     
     private void initPanelExp() {
         panel_exp.setLayout(new BoxLayout(panel_exp, BoxLayout.Y_AXIS));

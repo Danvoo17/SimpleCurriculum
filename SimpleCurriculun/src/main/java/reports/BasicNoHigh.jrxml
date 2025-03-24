@@ -63,7 +63,7 @@
 		</element>
 	</title>
 	<detail>
-		<band height="447" splitType="Stretch">
+		<band height="424" splitType="Stretch">
 			<element kind="textField" uuid="3bd3c50a-56a1-4ca7-abb3-abe1893d9cd1" x="50" y="90" width="460" height="30" fontName="Times New Roman" fontSize="24.0" hTextAlign="Center">
 				<expression><![CDATA[$P{name}]]></expression>
 			</element>
@@ -152,20 +152,12 @@
 				<text><![CDATA[Estudios Primarios:]]></text>
 				<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			</element>
-			<element kind="staticText" uuid="a9890a80-1d46-44d0-8058-1544c1a003d0" x="70" y="429" width="119" height="15" fontName="Times New Roman" fontSize="12.0" bold="true">
-				<text><![CDATA[Estudios Secundarios:]]></text>
-				<property name="com.jaspersoft.studio.unit.height" value="px"/>
-			</element>
 			<element kind="staticText" uuid="79a917e3-9b61-4253-9988-f07a9d93cb2b" mode="Opaque" x="60" y="380" width="440" height="14" forecolor="#FFFFFF" backcolor="#0070C0" fontName="Times New Roman" fontSize="12.0" bold="true" vTextAlign="Top">
 				<text><![CDATA[ FORMACION ACADÉMICA]]></text>
 				<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			</element>
 			<element kind="textField" uuid="96056c85-d916-40fe-91ac-74b6a3d25e83" x="240" y="406" width="240" height="15" fontName="Times New Roman" fontSize="12.0">
 				<expression><![CDATA[$P{primary}]]></expression>
-				<property name="com.jaspersoft.studio.unit.height" value="px"/>
-			</element>
-			<element kind="textField" uuid="57919695-095b-4d94-add0-cc9af387a67b" x="240" y="429" width="240" height="15" fontName="Times New Roman" fontSize="12.0">
-				<expression><![CDATA[$P{high}]]></expression>
 				<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			</element>
 		</band>

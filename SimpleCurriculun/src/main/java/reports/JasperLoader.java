@@ -23,11 +23,77 @@ import net.sf.jasperreports.view.JasperViewer;
  */
 public class JasperLoader {
 
-    public static void generarReporte(Map<String, Object> parametros, List<Experience> experiences, List<Reference> references) {
+    public static void generateBasic(Map<String, Object> parametros, List<Experience> experiences, List<Reference> references) {
         try {
             // Ruta al archivo .jrxml dentro de la carpeta reports
             String jrxmlPath = "src/main/java/reports/Basic.jrxml";
             String jasperPath = "src/main/java/reports/Basic.jasper";
+
+            // Compilar el .jrxml si el .jasper no existe
+            JasperCompileManager.compileReportToFile(jrxmlPath, jasperPath);
+
+            // Cargar el archivo .jasper
+            JasperReport reporte = (JasperReport) JRLoader.loadObjectFromFile(jasperPath);
+
+            // Convertir listas en JRBeanCollectionDataSource
+            JRBeanCollectionDataSource experienceDataSource = new JRBeanCollectionDataSource(experiences);
+            JRBeanCollectionDataSource referenceDataSource = new JRBeanCollectionDataSource(references);
+
+            // Agregar los nuevos parámetros
+            parametros.put("EXPERIENCE_DATASOURCE", experienceDataSource);
+            parametros.put("REFERENCE_DATASOURCE", referenceDataSource);
+
+            // Llenar el reporte
+            JasperPrint print = JasperFillManager.fillReport(reporte, parametros, new JREmptyDataSource());
+
+            // Mostrar el reporte
+            JasperViewer.viewReport(print, false);
+
+        } catch (JRException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al generar el reporte: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    
+    public static void generateBasicUni(Map<String, Object> parametros, List<Experience> experiences, List<Reference> references) {
+        try {
+            // Ruta al archivo .jrxml dentro de la carpeta reports
+            String jrxmlPath = "src/main/java/reports/BasicUni.jrxml";
+            String jasperPath = "src/main/java/reports/BasicUni.jasper";
+
+            // Compilar el .jrxml si el .jasper no existe
+            JasperCompileManager.compileReportToFile(jrxmlPath, jasperPath);
+
+            // Cargar el archivo .jasper
+            JasperReport reporte = (JasperReport) JRLoader.loadObjectFromFile(jasperPath);
+
+            // Convertir listas en JRBeanCollectionDataSource
+            JRBeanCollectionDataSource experienceDataSource = new JRBeanCollectionDataSource(experiences);
+            JRBeanCollectionDataSource referenceDataSource = new JRBeanCollectionDataSource(references);
+
+            // Agregar los nuevos parámetros
+            parametros.put("EXPERIENCE_DATASOURCE", experienceDataSource);
+            parametros.put("REFERENCE_DATASOURCE", referenceDataSource);
+
+            // Llenar el reporte
+            JasperPrint print = JasperFillManager.fillReport(reporte, parametros, new JREmptyDataSource());
+
+            // Mostrar el reporte
+            JasperViewer.viewReport(print, false);
+
+        } catch (JRException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al generar el reporte: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    
+    public static void generateBasicNoHigh(Map<String, Object> parametros, List<Experience> experiences, List<Reference> references) {
+        try {
+            // Ruta al archivo .jrxml dentro de la carpeta reports
+            String jrxmlPath = "src/main/java/reports/BasicNoHigh.jrxml";
+            String jasperPath = "src/main/java/reports/BasicNoHigh.jasper";
 
             // Compilar el .jrxml si el .jasper no existe
             JasperCompileManager.compileReportToFile(jrxmlPath, jasperPath);

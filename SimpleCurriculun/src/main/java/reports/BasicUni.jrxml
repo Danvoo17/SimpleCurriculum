@@ -51,6 +51,7 @@
 	<parameter name="high" class="java.lang.String"/>
 	<parameter name="EXPERIENCE_DATASOURCE" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
 	<parameter name="REFERENCE_DATASOURCE" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+	<parameter name="college" class="java.lang.String"/>
 	<query language="sql"><![CDATA[]]></query>
 	<background splitType="Stretch"/>
 	<title height="557" splitType="Stretch">
@@ -63,7 +64,7 @@
 		</element>
 	</title>
 	<detail>
-		<band height="447" splitType="Stretch">
+		<band height="471" splitType="Stretch">
 			<element kind="textField" uuid="3bd3c50a-56a1-4ca7-abb3-abe1893d9cd1" x="50" y="90" width="460" height="30" fontName="Times New Roman" fontSize="24.0" hTextAlign="Center">
 				<expression><![CDATA[$P{name}]]></expression>
 			</element>
@@ -166,6 +167,14 @@
 			</element>
 			<element kind="textField" uuid="57919695-095b-4d94-add0-cc9af387a67b" x="240" y="429" width="240" height="15" fontName="Times New Roman" fontSize="12.0">
 				<expression><![CDATA[$P{high}]]></expression>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="staticText" uuid="aed11ffe-4015-4e88-9218-5f002ea819ce" x="70" y="453" width="130" height="15" fontName="Times New Roman" fontSize="12.0" bold="true">
+				<text><![CDATA[Estudios Universitarios:]]></text>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</element>
+			<element kind="textField" uuid="b6a65688-dbbb-4063-b1fc-fcb572a01f83" x="240" y="453" width="240" height="15" fontName="Times New Roman" fontSize="12.0">
+				<expression><![CDATA[$P{college}]]></expression>
 				<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			</element>
 		</band>
