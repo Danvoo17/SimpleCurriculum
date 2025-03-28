@@ -228,25 +228,55 @@ public class CreateBasic extends javax.swing.JFrame {
 
         lbl_high.setText("Estudios Secundarios");
         panel_base.add(lbl_high, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, -1, -1));
+
+        txt_high.setBackground(new java.awt.Color(220, 220, 220));
+        txt_high.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txt_highMouseClicked(evt);
+            }
+        });
         panel_base.add(txt_high, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, 170, -1));
 
         lbl_college.setText("Universidad");
         panel_base.add(lbl_college, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 310, -1, -1));
 
+        txt_college.setBackground(new java.awt.Color(220, 220, 220));
         txt_college.setText("Uasd");
+        txt_college.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txt_collegeMouseClicked(evt);
+            }
+        });
         panel_base.add(txt_college, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 330, 50, -1));
 
         lbl_year.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lbl_year.setText(" /");
         panel_base.add(lbl_year, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, 30, 20));
 
+        txt_career.setBackground(new java.awt.Color(220, 220, 220));
         txt_career.setText("Ingenieria en...");
+        txt_career.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txt_careerMouseClicked(evt);
+            }
+        });
         panel_base.add(txt_career, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 330, 110, -1));
 
         rad_college.setText("Si");
+        rad_college.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rad_collegeActionPerformed(evt);
+            }
+        });
         panel_base.add(rad_college, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 310, 40, 20));
 
+        rad_high.setSelected(true);
         rad_high.setText("No");
+        rad_high.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rad_highActionPerformed(evt);
+            }
+        });
         panel_base.add(rad_high, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 250, 50, 20));
 
         lbl_exp.setText("Experiencia Laboral");
@@ -373,6 +403,64 @@ public class CreateBasic extends javax.swing.JFrame {
         
         txt_primary.setBackground(Color.WHITE);
     }//GEN-LAST:event_txt_primaryKeyTyped
+
+    private void txt_highMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_highMouseClicked
+        
+        if (rad_high.isSelected()) {
+            
+            JOptionPane.showMessageDialog(this, "No puedes llenar estudios secundarios mientras \"No\" esté activado", "Error", JOptionPane.ERROR_MESSAGE);
+        } 
+    }//GEN-LAST:event_txt_highMouseClicked
+
+    private void rad_highActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rad_highActionPerformed
+        
+        if (rad_high.isSelected()) {
+            
+            txt_high.setEnabled(false);
+            txt_high.setBackground(new Color(220,220,220));
+        } else {
+            
+            txt_high.setBackground(new Color(255,255,255));
+            txt_high.setEnabled(true);
+        }
+    }//GEN-LAST:event_rad_highActionPerformed
+
+    private void rad_collegeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rad_collegeActionPerformed
+        
+        if (rad_college.isSelected()) {
+            
+            txt_college.setBackground(new Color(255,255,255));
+            txt_college.setEnabled(true);
+            
+            txt_career.setBackground(new Color(255,255,255));
+            txt_career.setEnabled(true);
+        } else {
+            
+            txt_college.setEnabled(false);
+            txt_college.setBackground(new Color(220,220,220));
+            
+            txt_career.setEnabled(false);
+            txt_career.setBackground(new Color(220,220,220));
+        }
+    }//GEN-LAST:event_rad_collegeActionPerformed
+
+    private void txt_careerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_careerMouseClicked
+        
+        if (rad_college.isSelected()) {
+        
+        } else {
+            JOptionPane.showMessageDialog(this, "No puedes llenar la carrera mientras \"Si\" esté desactivado", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_txt_careerMouseClicked
+
+    private void txt_collegeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_collegeMouseClicked
+        
+        if (rad_college.isSelected()) {
+            
+        } else {
+            JOptionPane.showMessageDialog(this, "No puedes poner la Universidad mientras \"Si\" esté desactivado", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_txt_collegeMouseClicked
     
     private void printReport() {
         
