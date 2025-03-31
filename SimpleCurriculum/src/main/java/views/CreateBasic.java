@@ -230,9 +230,19 @@ public class CreateBasic extends javax.swing.JFrame {
         panel_base.add(lbl_high, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, -1, -1));
 
         txt_high.setBackground(new java.awt.Color(220, 220, 220));
+        txt_high.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_highFocusLost(evt);
+            }
+        });
         txt_high.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txt_highMouseClicked(evt);
+            }
+        });
+        txt_high.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_highKeyTyped(evt);
             }
         });
         panel_base.add(txt_high, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, 170, -1));
@@ -242,9 +252,19 @@ public class CreateBasic extends javax.swing.JFrame {
 
         txt_college.setBackground(new java.awt.Color(220, 220, 220));
         txt_college.setText("Uasd");
+        txt_college.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_collegeFocusLost(evt);
+            }
+        });
         txt_college.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txt_collegeMouseClicked(evt);
+            }
+        });
+        txt_college.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_collegeKeyTyped(evt);
             }
         });
         panel_base.add(txt_college, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 330, 50, -1));
@@ -255,9 +275,19 @@ public class CreateBasic extends javax.swing.JFrame {
 
         txt_career.setBackground(new java.awt.Color(220, 220, 220));
         txt_career.setText("Ingenieria en...");
+        txt_career.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_careerFocusLost(evt);
+            }
+        });
         txt_career.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txt_careerMouseClicked(evt);
+            }
+        });
+        txt_career.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_careerKeyTyped(evt);
             }
         });
         panel_base.add(txt_career, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 330, 110, -1));
@@ -461,6 +491,52 @@ public class CreateBasic extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "No puedes poner la Universidad mientras \"Si\" esté desactivado", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_txt_collegeMouseClicked
+
+    private void txt_highKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_highKeyTyped
+        
+        if (rad_high.isSelected()) {
+            
+            JOptionPane.showMessageDialog(this, "No puedes llenar estudios secundarios mientras \"No\" esté activado", "Error", JOptionPane.ERROR_MESSAGE);
+            txt_high.setText("");
+        } 
+    }//GEN-LAST:event_txt_highKeyTyped
+
+    private void txt_collegeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_collegeKeyTyped
+        
+        if (rad_college.isSelected()) {
+            
+        } else {
+            JOptionPane.showMessageDialog(this, "No puedes poner la Universidad mientras \"Si\" esté desactivado", "Error", JOptionPane.ERROR_MESSAGE);
+            txt_college.setText("");
+            txt_college.setText("");
+
+        }
+    }//GEN-LAST:event_txt_collegeKeyTyped
+
+    private void txt_careerKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_careerKeyTyped
+       
+        if (rad_college.isSelected()) {
+        
+        } else {
+            JOptionPane.showMessageDialog(this, "No puedes llenar la carrera mientras \"Si\" esté desactivado", "Error", JOptionPane.ERROR_MESSAGE);
+            txt_career.setText("");
+        }
+    }//GEN-LAST:event_txt_careerKeyTyped
+
+    private void txt_highFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_highFocusLost
+        
+        txt_high.setText("");
+    }//GEN-LAST:event_txt_highFocusLost
+
+    private void txt_collegeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_collegeFocusLost
+        
+        txt_college.setText("");
+    }//GEN-LAST:event_txt_collegeFocusLost
+
+    private void txt_careerFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_careerFocusLost
+        
+        txt_career.setText("");
+    }//GEN-LAST:event_txt_careerFocusLost
     
     private void printReport() {
         
