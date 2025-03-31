@@ -525,17 +525,29 @@ public class CreateBasic extends javax.swing.JFrame {
 
     private void txt_highFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_highFocusLost
         
-        txt_high.setText("");
+        if (rad_high.isSelected()) {
+            txt_high.setText("");
+        }
     }//GEN-LAST:event_txt_highFocusLost
 
     private void txt_collegeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_collegeFocusLost
         
-        txt_college.setText("");
+        if (rad_college.isSelected()) {
+            
+        } else {
+            
+            txt_college.setText("");
+        }
     }//GEN-LAST:event_txt_collegeFocusLost
 
     private void txt_careerFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_careerFocusLost
         
-        txt_career.setText("");
+        if (rad_college.isSelected()) {
+            
+        } else {
+            
+            txt_career.setText("");
+        }
     }//GEN-LAST:event_txt_careerFocusLost
     
     private void printReport() {

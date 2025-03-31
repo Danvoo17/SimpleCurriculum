@@ -1,9 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package reports;
 
+import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 import javax.swing.JOptionPane;
@@ -14,7 +11,6 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
 /**
@@ -25,15 +21,13 @@ public class JasperLoader {
 
     public static void generateBasic(Map<String, Object> parametros, List<Experience> experiences, List<Reference> references) {
         try {
-            // Ruta al archivo .jrxml dentro de la carpeta reports
-            String jrxmlPath = "src/main/java/reports/Basic.jrxml";
-            String jasperPath = "src/main/java/reports/Basic.jasper";
+            // Cargar el archivo .jrxml desde el .jar
+            InputStream reportStream = JasperLoader.class.getClassLoader().getResourceAsStream("reports/Basic.jrxml");
+            if (reportStream == null) {
+                throw new RuntimeException("No se pudo encontrar el archivo Basic.jrxml");
+            }
 
-            // Compilar el .jrxml si el .jasper no existe
-            JasperCompileManager.compileReportToFile(jrxmlPath, jasperPath);
-
-            // Cargar el archivo .jasper
-            JasperReport reporte = (JasperReport) JRLoader.loadObjectFromFile(jasperPath);
+            JasperReport reporte = JasperCompileManager.compileReport(reportStream);
 
             // Convertir listas en JRBeanCollectionDataSource
             JRBeanCollectionDataSource experienceDataSource = new JRBeanCollectionDataSource(experiences);
@@ -54,19 +48,16 @@ public class JasperLoader {
             JOptionPane.showMessageDialog(null, "Error al generar el reporte: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
-    
+
     public static void generateBasicUni(Map<String, Object> parametros, List<Experience> experiences, List<Reference> references) {
         try {
-            // Ruta al archivo .jrxml dentro de la carpeta reports
-            String jrxmlPath = "src/main/java/reports/BasicUni.jrxml";
-            String jasperPath = "src/main/java/reports/BasicUni.jasper";
+            // Cargar el archivo .jrxml desde el .jar
+            InputStream reportStream = JasperLoader.class.getClassLoader().getResourceAsStream("reports/BasicUni.jrxml");
+            if (reportStream == null) {
+                throw new RuntimeException("No se pudo encontrar el archivo BasicUni.jrxml");
+            }
 
-            // Compilar el .jrxml si el .jasper no existe
-            JasperCompileManager.compileReportToFile(jrxmlPath, jasperPath);
-
-            // Cargar el archivo .jasper
-            JasperReport reporte = (JasperReport) JRLoader.loadObjectFromFile(jasperPath);
+            JasperReport reporte = JasperCompileManager.compileReport(reportStream);
 
             // Convertir listas en JRBeanCollectionDataSource
             JRBeanCollectionDataSource experienceDataSource = new JRBeanCollectionDataSource(experiences);
@@ -87,19 +78,16 @@ public class JasperLoader {
             JOptionPane.showMessageDialog(null, "Error al generar el reporte: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
-    
+
     public static void generateBasicNoHigh(Map<String, Object> parametros, List<Experience> experiences, List<Reference> references) {
         try {
-            // Ruta al archivo .jrxml dentro de la carpeta reports
-            String jrxmlPath = "src/main/java/reports/BasicNoHigh.jrxml";
-            String jasperPath = "src/main/java/reports/BasicNoHigh.jasper";
+            // Cargar el archivo .jrxml desde el .jar
+            InputStream reportStream = JasperLoader.class.getClassLoader().getResourceAsStream("reports/BasicNoHigh.jrxml");
+            if (reportStream == null) {
+                throw new RuntimeException("No se pudo encontrar el archivo BasicNoHigh.jrxml");
+            }
 
-            // Compilar el .jrxml si el .jasper no existe
-            JasperCompileManager.compileReportToFile(jrxmlPath, jasperPath);
-
-            // Cargar el archivo .jasper
-            JasperReport reporte = (JasperReport) JRLoader.loadObjectFromFile(jasperPath);
+            JasperReport reporte = JasperCompileManager.compileReport(reportStream);
 
             // Convertir listas en JRBeanCollectionDataSource
             JRBeanCollectionDataSource experienceDataSource = new JRBeanCollectionDataSource(experiences);
@@ -121,4 +109,3 @@ public class JasperLoader {
         }
     }
 }
-
